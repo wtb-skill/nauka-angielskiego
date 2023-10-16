@@ -5,7 +5,7 @@ Basic Concept:
 - imports 3000 most common English words from [3000-English-words list]
 - gives the user 10 words one by one and places it in his [hand]
 - the user [interacts] with those words [by translating] each of them (first eng->pol then pol-eng)
-- user needs to get [6 stars] (or points) for each word (you get 3 from eng->pol translation and 3 from pol-eng translation)
+- the user needs to get [6 stars] (or points) for each word (you get 3 from eng->pol translation and 3 from pol-eng translation)
 - you [get 1 star] when you successfully translate the word
 - [first 3] times you translate from English to Polish, [later 3] from Polish to English
 - whenever you make a [mistake], [1 star is taken away] from you
