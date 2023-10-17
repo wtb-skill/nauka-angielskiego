@@ -21,10 +21,32 @@ class View:
         print(f"The new word for you to learn is: '{word['ENG']}'!")
 
     @staticmethod
+    def display_word(word):
+        print(f"English: {word['ENG']:<15} Polish: {word['PL']['translation']:<15}")
+
+    @staticmethod
     def display_correct():
         print("Correct!")
 
     @staticmethod
     def display_wrong():
         print("Wrong!")
+
+    @staticmethod
+    def display_menu():
+        menu = """
+================================================
+  3000 most common English words App
+================================================
+[1] Quiz
+[2] View Current Words 
+[3] View Mastered Words 
+[4] Exit 
+        """
+        print(menu)
+
+    @staticmethod
+    def menu_option():
+        user_input = input("Please enter the number corresponding to your choice: ")
+        return int(user_input)
 
