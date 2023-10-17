@@ -5,6 +5,7 @@ import json
 STARTER = "3000-Most-Common-English-Words"
 TO_LEARN = "words_to_learn.json"
 HAND = "words_in_hand.json"
+MASTERED = "words_mastered.json"
 
 
 class Model:
@@ -13,6 +14,7 @@ class Model:
         self.starting_list = self.get_starting_list()
         self.words_to_learn = self.get_words_to_learn()
         self.hand = self.get_hand()
+        self.mastered = self.get_words_mastered()
 
     @staticmethod
     def get_starting_list() -> List[Dict[str, str]]:
@@ -36,6 +38,15 @@ class Model:
             data = self.draw_10_words()
         return data
 
+    @staticmethod
+    def get_words_mastered():
+        try:
+            with open(MASTERED, "r", encoding="utf-8") as file:
+                data = json.load(file)
+        except FileNotFoundError:
+            data = []
+        return data
+
     def draw_10_words(self):
         words_in_hand = []
         for _ in range(0, 10):
@@ -44,14 +55,26 @@ class Model:
             self.update_words_to_learn(word)
         return words_in_hand
 
+    def draw_one_word(self):
+        word = self.words_to_learn[randint(0, len(self.words_to_learn))]
+        self.update_words_in_hand(word)
+        self.update_words_to_learn(word)
+        return word
+
     def update_words_to_learn(self, word):
         self.words_to_learn.remove(word)
+        self.save_to_learn()
 
     def update_words_in_hand(self, word):
         if word in self.hand:
             self.hand.remove(word)
         else:
             self.hand.append(word)
+        self.save_hand()
+
+    def update_words_mastered(self, word):
+        self.mastered.append(word)
+        self.save_mastered()
 
     def save_hand(self):
         with open(HAND, 'w', encoding='utf-8') as file:
@@ -60,6 +83,10 @@ class Model:
     def save_to_learn(self):
         with open(TO_LEARN, 'w', encoding='utf-8') as file:
             json.dump(self.words_to_learn, file)
+
+    def save_mastered(self):
+        with open(MASTERED, 'w', encoding='utf-8') as file:
+            json.dump(self.mastered, file)
 
     @staticmethod
     def star_add(word):

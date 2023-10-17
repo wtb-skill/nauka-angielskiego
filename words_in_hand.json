@@ -1,1 +1,72 @@
-[{"ENG": "twin", "PL": {"translation": "bli\u017aniak", "stars": 0}}, {"ENG": "chip", "PL": {"translation": "\u017ceton", "stars": 0}}, {"ENG": "electric", "PL": {"translation": "elektryczny", "stars": 0}}, {"ENG": "increased", "PL": {"translation": "zwi\u0119kszony", "stars": 0}}, {"ENG": "problem", "PL": {"translation": "problem", "stars": 0}}, {"ENG": "meeting", "PL": {"translation": "spotkanie", "stars": 0}}, {"ENG": "guide", "PL": {"translation": "przewodnik", "stars": 0}}, {"ENG": "voter", "PL": {"translation": "wyborca", "stars": 0}}, {"ENG": "alternative", "PL": {"translation": "alternatywny", "stars": 0}}, {"ENG": "expose", "PL": {"translation": "ujawni\u0107", "stars": 0}}]
+[
+  {
+    "ENG": "advice",
+    "PL": {
+      "translation": "rada",
+      "stars": 0
+    }
+  },
+  {
+    "ENG": "battle",
+    "PL": {
+      "translation": "bitwa",
+      "stars": 0
+    }
+  },
+  {
+    "ENG": "near",
+    "PL": {
+      "translation": "w pobli\u017cu",
+      "stars": 0
+    }
+  },
+  {
+    "ENG": "actually",
+    "PL": {
+      "translation": "W\u0142a\u015bciwie",
+      "stars": 0
+    }
+  },
+  {
+    "ENG": "evolution",
+    "PL": {
+      "translation": "ewolucja",
+      "stars": 0
+    }
+  },
+  {
+    "ENG": "shift",
+    "PL": {
+      "translation": "zmiana",
+      "stars": 0
+    }
+  },
+  {
+    "ENG": "coat",
+    "PL": {
+      "translation": "p\u0142aszcz",
+      "stars": 0
+    }
+  },
+  {
+    "ENG": "journey",
+    "PL": {
+      "translation": "podr\u00f3\u017c",
+      "stars": 0
+    }
+  },
+  {
+    "ENG": "psychology",
+    "PL": {
+      "translation": "psychologia",
+      "stars": 0
+    }
+  },
+  {
+    "ENG": "diversity",
+    "PL": {
+      "translation": "r\u00f3\u017cnorodno\u015b\u0107",
+      "stars": 0
+    }
+  }
+]
