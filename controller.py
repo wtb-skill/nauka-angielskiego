@@ -1,7 +1,8 @@
 from model import Model
 from view import View
+from pathlib import Path
 
-file_path = "words_in_hand"
+HAND = "words_in_hand.json"
 
 
 class Controller:
@@ -23,18 +24,18 @@ class Controller:
         if self.model.star_number(word) < 3:
             user_answer = self.view.quiz_eng_to_pol(word)
             if user_answer == word['PL']['translation']:
-                print("YEP")  # move to view
+                self.view.display_correct()
                 self.model.star_add(word)
             else:
-                print("NOPE")  # move to view
+                self.view.display_wrong()
                 self.model.star_remove(word)
         else:
             user_answer = self.view.quiz_pol_to_eng(word)
             if user_answer == word['ENG']:
-                print("YEP")  # move to view
+                self.view.display_correct()
                 self.model.star_add(word)
             else:
-                print("NOPE")  # move to view
+                self.view.display_wrong()
                 self.model.star_remove(word)
 
     def word_is_mastered(self, word):
@@ -49,13 +50,20 @@ class Controller:
         for word in self.model.hand:
             self.word_is_mastered(word)
 
+    @staticmethod
+    def it_is_first_run():
+        if Path(HAND).is_file():
+            return False
+        else:
+            return True
 
 
 if __name__ == "__main__":
     controller = Controller()
-    controller.first_run()
-    # controller.quiz()
-    # controller.check_words_for_mastery()
+    if controller.it_is_first_run():
+        controller.first_run()
+    controller.quiz()
+    controller.check_words_for_mastery()
 
 
 
@@ -68,8 +76,8 @@ if __name__ == "__main__":
 # TODO 6✅: A word loses a star/point.
 # TODO 7✅: A word is mastered (6 stars achieved)- word goes to Mastered Pile. A new word is drawn from To-Learn List.
 # TODO 7.5✅: And tell the user when a word is mastered and what a new word is.
-# TODO 8: A word is shown to the user.
-# TODO 9: User gets access to Menu:
+# TODO 8✅: A word is shown to the user.
+# TODO 9: User gets access in Menu to :
 #         - his hand and can view the words within.
 #         - Mastered Pile and can view the words within.
 #         - quiz

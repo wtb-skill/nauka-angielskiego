@@ -20,3 +20,11 @@ class View:
     def new_word(word):
         print(f"The new word for you to learn is: '{word['ENG']}'!")
 
+    @staticmethod
+    def display_correct():
+        print("Correct!")
+
+    @staticmethod
+    def display_wrong():
+        print("Wrong!")
+
