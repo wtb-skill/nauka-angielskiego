@@ -2,29 +2,31 @@ from typing import List, Dict
 from random import randint
 import json
 
-FILE = "3000-Most-Common-English-Words"
-HAND = "words_in_hand"
+STARTER = "3000-Most-Common-English-Words"
+TO_LEARN = "words_to_learn.json"
+HAND = "words_in_hand.json"
 
 
 class Model:
 
     def __init__(self):
         self.starting_list = self.get_starting_list()
+        self.words_to_learn = self.get_words_to_learn()
         self.hand = self.get_hand()
 
     @staticmethod
-    def get_starting_list():
-        with open(FILE, "r", encoding="utf-8") as file:
+    def get_starting_list() -> List[Dict[str, str]]:
+        with open(STARTER, "r", encoding="utf-8") as file:
             data = json.load(file)
         return data
 
-    def draw_10_words(self):
-        words_in_hand = []
-        for i in range(0, 10):
-            word = self.starting_list[randint(0, 3000)]
-            if word not in words_in_hand:
-                words_in_hand.append(word)
-        return words_in_hand
+    def get_words_to_learn(self):
+        try:
+            with open(TO_LEARN, "r", encoding="utf-8") as file:
+                data = json.load(file)
+        except FileNotFoundError:
+            data = self.starting_list
+        return data
 
     def get_hand(self):
         try:
@@ -34,9 +36,30 @@ class Model:
             data = self.draw_10_words()
         return data
 
+    def draw_10_words(self):
+        words_in_hand = []
+        for _ in range(0, 10):
+            word = self.words_to_learn[randint(0, len(self.words_to_learn))]
+            words_in_hand.append(word)
+            self.update_words_to_learn(word)
+        return words_in_hand
+
+    def update_words_to_learn(self, word):
+        self.words_to_learn.remove(word)
+
+    def update_words_in_hand(self, word):
+        if word in self.hand:
+            self.hand.remove(word)
+        else:
+            self.hand.append(word)
+
     def save_hand(self):
-        with open("words_in_hand", 'w', encoding='utf-8') as file:
+        with open(HAND, 'w', encoding='utf-8') as file:
             json.dump(self.hand, file)
+
+    def save_to_learn(self):
+        with open(TO_LEARN, 'w', encoding='utf-8') as file:
+            json.dump(self.words_to_learn, file)
 
     @staticmethod
     def star_add(word):
@@ -55,12 +78,12 @@ class Model:
 
 
 
-
 if __name__ == "__main__":
     model = Model()
     # print(model.get_starting_list())
     # print(model.starting_hand)
     # model.get_hand()
     # model.save_hand()
-    model.save_hand()
-    print(model.hand)
+    # model.get_words_to_learn()
+    print(model.words_to_learn)
+    model.save_to_learn()

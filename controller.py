@@ -1,7 +1,5 @@
-from random import randint
 from model import Model
 from view import View
-from pathlib import Path
 
 file_path = "words_in_hand"
 
@@ -10,6 +8,12 @@ class Controller:
     def __init__(self):
         self.model = Model()
         self.view = View()
+
+    def first_run(self):
+        # self.model.words_to_learn = self.model.starting_list
+        self.model.save_to_learn()
+        # self.model.draw_10_words()
+        self.model.save_hand()
 
     def quiz(self):
         for word in self.model.hand:
@@ -35,17 +39,10 @@ class Controller:
                 self.model.star_remove(word)
 
 
-    # def is_it_first_activation(self):
-    #     if Path(file_path).is_file():
-    #         self.model.get_hand()
-    #     else:
-    #         self.model.draw_10_words()
-    #         self.model.save_hand()
-
-
 if __name__ == "__main__":
     controller = Controller()
-    controller.quiz()
+    controller.first_run()
+    # controller.quiz()
 
 
 
