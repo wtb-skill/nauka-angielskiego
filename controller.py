@@ -21,7 +21,7 @@ class Controller:
     def ask_translation(self, _word):
         if self.model.star_number(_word) < 3:
             user_answer = self.view.quiz_eng_to_pol(_word)
-            if user_answer == _word['PL']['translation']:
+            if user_answer.lower() == _word['PL']['translation'].lower():
                 self.view.display_correct()
                 self.model.star_add(_word)
             else:
@@ -29,7 +29,7 @@ class Controller:
                 self.model.star_remove(_word)
         else:
             user_answer = self.view.quiz_pol_to_eng(_word)
-            if user_answer == _word['ENG']:
+            if user_answer.lower() == _word['ENG'].lower():
                 self.view.display_correct()
                 self.model.star_add(_word)
             else:
@@ -91,8 +91,8 @@ if __name__ == "__main__":
         else:
             break
 
-# TODO 1: Add more leeway for the user to input words- no case sensitivity, allow single letter spelling mistakes.
-# TODO 1: Add docstrings and type hints.
+# TODO 1: Add more leeway for the user to input words: allow single letter spelling mistakes.
+# TODO 2: Add docstrings and type hints.
 
 
 
