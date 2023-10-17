@@ -50,3 +50,7 @@ class View:
         user_input = input("Please enter the number corresponding to your choice: ")
         return int(user_input)
 
+    @staticmethod
+    def quiz_completed():
+        print("You have already completed the quiz for today.Come back tomorrow! <3")
+

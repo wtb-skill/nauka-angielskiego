@@ -65,6 +65,11 @@ class Controller:
         for _word in self.model.words_mastered:
             self.view.display_word(_word)
 
+    def first_quiz_today(self):
+        if self.model.get_quiz_date()["data"] == self.model.today():
+            return False
+        else:
+            return True
 
 
 if __name__ == "__main__":
@@ -76,8 +81,12 @@ if __name__ == "__main__":
         option = controller.view.menu_option()
 
         if option == 1:
-            controller.quiz()
-            controller.check_words_for_mastery()
+            if controller.first_quiz_today():
+                controller.quiz()
+                controller.check_words_for_mastery()
+                controller.model.save_quiz_date()
+            else:
+                controller.view.quiz_completed()
         elif option == 2:
             controller.display_hand()
         elif option == 3:
@@ -85,11 +94,8 @@ if __name__ == "__main__":
         else:
             break
 
-
-
-
-
-# TODO 2: User can access the quiz only once per day.
+# TODO 1: Add more leeway for the user to input words- no case sensitivity, allow single letter spelling mistakes.
+# TODO 1: Add docstrings and type hints.
 
 
 

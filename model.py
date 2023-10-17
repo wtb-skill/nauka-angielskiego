@@ -1,11 +1,13 @@
 from typing import List, Dict
 from random import randint
 import json
+from datetime import datetime
 
 STARTER = "3000-Most-Common-English-Words"
 TO_LEARN = "words_to_learn.json"
 HAND = "words_in_hand.json"
 MASTERED = "words_mastered.json"
+SETTINGS = "settings.json"
 
 
 class Model:
@@ -15,6 +17,7 @@ class Model:
         self.words_to_learn = self.get_words_to_learn()
         self.hand = self.get_hand()
         self.words_mastered = self.get_words_mastered()
+        self.quiz_date = self.get_quiz_date()
 
     @staticmethod
     def get_starting_list() -> List[Dict[str, str]]:
@@ -94,8 +97,25 @@ class Model:
     def star_number(word):
         return word['PL']['stars']
 
+    @staticmethod
+    def get_quiz_date():
+        try:
+            with open(SETTINGS, "r", encoding="utf-8") as file:
+                data = json.load(file)
+        except FileNotFoundError:
+            data = {"data": "0"}
+        return data
 
+    def save_quiz_date(self):
+        today = self.today()
+        self.quiz_date = {"data": today}
+        with open(SETTINGS, "w", encoding="utf-8") as file:
+            json.dump(self.quiz_date, file)
 
+    @staticmethod
+    def today():
+        today = str(datetime.today()).split(" ")[0]
+        return today
 
 
 if __name__ == "__main__":
@@ -105,5 +125,7 @@ if __name__ == "__main__":
     # model.get_hand()
     # model.save_hand()
     # model.get_words_to_learn()
-    print(model.words_to_learn)
-    model.save_to_learn()
+    # print(model.words_to_learn)
+    # model.save_to_learn()
+    model.save_quiz_date()
+    model.today()
