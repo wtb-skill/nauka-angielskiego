@@ -14,7 +14,7 @@ class Model:
         self.starting_list = self.get_starting_list()
         self.words_to_learn = self.get_words_to_learn()
         self.hand = self.get_hand()
-        self.mastered = self.get_words_mastered()
+        self.words_mastered = self.get_words_mastered()
 
     @staticmethod
     def get_starting_list() -> List[Dict[str, str]]:
@@ -30,12 +30,13 @@ class Model:
             data = self.starting_list
         return data
 
-    def get_hand(self):
+    @staticmethod
+    def get_hand():
         try:
             with open(HAND, 'r', encoding='utf-8') as file:
                 data = json.load(file)
         except FileNotFoundError:
-            data = self.draw_10_words()
+            data = []
         return data
 
     @staticmethod
@@ -46,14 +47,6 @@ class Model:
         except FileNotFoundError:
             data = []
         return data
-
-    def draw_10_words(self):
-        words_in_hand = []
-        for _ in range(0, 10):
-            word = self.words_to_learn[randint(0, len(self.words_to_learn))]
-            words_in_hand.append(word)
-            self.update_words_to_learn(word)
-        return words_in_hand
 
     def draw_one_word(self):
         word = self.words_to_learn[randint(0, len(self.words_to_learn))]
@@ -73,7 +66,7 @@ class Model:
         self.save_hand()
 
     def update_words_mastered(self, word):
-        self.mastered.append(word)
+        self.words_mastered.append(word)
         self.save_mastered()
 
     def save_hand(self):
@@ -86,7 +79,7 @@ class Model:
 
     def save_mastered(self):
         with open(MASTERED, 'w', encoding='utf-8') as file:
-            json.dump(self.mastered, file)
+            json.dump(self.words_mastered, file)
 
     @staticmethod
     def star_add(word):

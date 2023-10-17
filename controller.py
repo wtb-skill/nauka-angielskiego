@@ -10,8 +10,9 @@ class Controller:
         self.view = View()
 
     def first_run(self):
-        self.model.save_to_learn()
-        self.model.save_hand()
+        for _ in range(0, 10):
+            new_word = self.model.draw_one_word()
+            self.view.new_word(new_word)
 
     def quiz(self):
         for word in self.model.hand:
@@ -19,7 +20,7 @@ class Controller:
         self.model.save_hand()
 
     def ask_translation(self, word):
-        if self.model.star_number(word) <= 3:
+        if self.model.star_number(word) < 3:
             user_answer = self.view.quiz_eng_to_pol(word)
             if user_answer == word['PL']['translation']:
                 print("YEP")  # move to view
@@ -37,7 +38,7 @@ class Controller:
                 self.model.star_remove(word)
 
     def word_is_mastered(self, word):
-        if self.model.star_number(word) == 7:
+        if self.model.star_number(word) == 6:
             self.view.word_mastered(word)
             self.model.update_words_mastered(word)
             self.model.update_words_in_hand(word)
@@ -53,8 +54,8 @@ class Controller:
 if __name__ == "__main__":
     controller = Controller()
     controller.first_run()
-    controller.quiz()
-    controller.check_words_for_mastery()
+    # controller.quiz()
+    # controller.check_words_for_mastery()
 
 
 
