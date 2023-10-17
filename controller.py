@@ -2,8 +2,6 @@ from model import Model
 from view import View
 from pathlib import Path
 
-HAND = "words_in_hand.json"
-
 
 class Controller:
     def __init__(self):
@@ -50,9 +48,8 @@ class Controller:
         for _word in self.model.hand:
             self.word_is_mastered(_word)
 
-    @staticmethod
-    def it_is_first_run():
-        if Path(HAND).is_file():
+    def it_is_first_run(self):
+        if Path(self.model.HAND).is_file():
             return False
         else:
             return True

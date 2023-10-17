@@ -3,14 +3,14 @@ from random import randint
 import json
 from datetime import datetime
 
-STARTER = "3000-Most-Common-English-Words"
-TO_LEARN = "words_to_learn.json"
-HAND = "words_in_hand.json"
-MASTERED = "words_mastered.json"
-SETTINGS = "settings.json"
-
 
 class Model:
+
+    STARTER = "3000-Most-Common-English-Words"
+    TO_LEARN = "words_to_learn.json"
+    HAND = "words_in_hand.json"
+    MASTERED = "words_mastered.json"
+    SETTINGS = "settings.json"
 
     def __init__(self):
         self.starting_list = self.get_starting_list()
@@ -19,33 +19,30 @@ class Model:
         self.words_mastered = self.get_words_mastered()
         self.quiz_date = self.get_quiz_date()
 
-    @staticmethod
-    def get_starting_list() -> List[Dict[str, str]]:
-        with open(STARTER, "r", encoding="utf-8") as file:
+    def get_starting_list(self) -> List[Dict[str, str]]:
+        with open(self.STARTER, "r", encoding="utf-8") as file:
             data = json.load(file)
         return data
 
     def get_words_to_learn(self):
         try:
-            with open(TO_LEARN, "r", encoding="utf-8") as file:
+            with open(self.TO_LEARN, "r", encoding="utf-8") as file:
                 data = json.load(file)
         except FileNotFoundError:
             data = self.starting_list
         return data
 
-    @staticmethod
-    def get_hand():
+    def get_hand(self):
         try:
-            with open(HAND, 'r', encoding='utf-8') as file:
+            with open(self.HAND, 'r', encoding='utf-8') as file:
                 data = json.load(file)
         except FileNotFoundError:
             data = []
         return data
 
-    @staticmethod
-    def get_words_mastered():
+    def get_words_mastered(self):
         try:
-            with open(MASTERED, "r", encoding="utf-8") as file:
+            with open(self.MASTERED, "r", encoding="utf-8") as file:
                 data = json.load(file)
         except FileNotFoundError:
             data = []
@@ -73,15 +70,15 @@ class Model:
         self.save_mastered()
 
     def save_hand(self):
-        with open(HAND, 'w', encoding='utf-8') as file:
+        with open(self.HAND, 'w', encoding='utf-8') as file:
             json.dump(self.hand, file)
 
     def save_to_learn(self):
-        with open(TO_LEARN, 'w', encoding='utf-8') as file:
+        with open(self.TO_LEARN, 'w', encoding='utf-8') as file:
             json.dump(self.words_to_learn, file)
 
     def save_mastered(self):
-        with open(MASTERED, 'w', encoding='utf-8') as file:
+        with open(self.MASTERED, 'w', encoding='utf-8') as file:
             json.dump(self.words_mastered, file)
 
     @staticmethod
@@ -97,10 +94,9 @@ class Model:
     def star_number(word):
         return word['PL']['stars']
 
-    @staticmethod
-    def get_quiz_date():
+    def get_quiz_date(self):
         try:
-            with open(SETTINGS, "r", encoding="utf-8") as file:
+            with open(self.SETTINGS, "r", encoding="utf-8") as file:
                 data = json.load(file)
         except FileNotFoundError:
             data = {"data": "0"}
@@ -109,7 +105,7 @@ class Model:
     def save_quiz_date(self):
         today = self.today()
         self.quiz_date = {"data": today}
-        with open(SETTINGS, "w", encoding="utf-8") as file:
+        with open(self.SETTINGS, "w", encoding="utf-8") as file:
             json.dump(self.quiz_date, file)
 
     @staticmethod
