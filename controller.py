@@ -93,6 +93,7 @@ if __name__ == "__main__":
 
 # TODO 1: Add more leeway for the user to input words: allow single letter spelling mistakes.
 # TODO 2: Add docstrings and type hints.
+# TODO 3: Maybe add tests.
 
 
 

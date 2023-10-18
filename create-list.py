@@ -3,7 +3,7 @@ from typing import List, Dict, Tuple
 
 
 def get_eng_list():
-    with open("3000-English-words.txt", encoding='utf-8') as file:
+    with open("VocabularyData/3000-English-words.txt", encoding='utf-8') as file:
         lines = file.readlines()
     list_of_3000_words = [line.strip() for line in lines]
     return list_of_3000_words

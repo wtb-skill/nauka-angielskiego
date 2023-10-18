@@ -6,11 +6,11 @@ from datetime import datetime
 
 class Model:
 
-    STARTER = "3000-Most-Common-English-Words"
-    TO_LEARN = "words_to_learn.json"
-    HAND = "words_in_hand.json"
-    MASTERED = "words_mastered.json"
-    SETTINGS = "settings.json"
+    STARTER = "VocabularyData/3000-Most-Common-English-Words"
+    TO_LEARN = "VocabularyData/words_to_learn.json"
+    HAND = "VocabularyData/words_in_hand.json"
+    MASTERED = "VocabularyData/words_mastered.json"
+    SETTINGS = "VocabularyData/settings.json"
 
     def __init__(self):
         self.starting_list = self.get_starting_list()
