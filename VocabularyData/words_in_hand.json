@@ -1,1 +1,72 @@
-[{"ENG": "holiday", "PL": {"translation": "wakacje", "stars": 0}}, {"ENG": "development", "PL": {"translation": "rozw\u00f3j", "stars": 0}}, {"ENG": "specific", "PL": {"translation": "konkretny", "stars": 0}}, {"ENG": "efficiency", "PL": {"translation": "efektywno\u015b\u0107", "stars": 0}}, {"ENG": "loss", "PL": {"translation": "strata", "stars": 0}}, {"ENG": "you", "PL": {"translation": "Ty", "stars": 0}}, {"ENG": "foundation", "PL": {"translation": "Fundacja", "stars": 0}}, {"ENG": "remind", "PL": {"translation": "przypomnie\u0107", "stars": 0}}, {"ENG": "order", "PL": {"translation": "zam\u00f3wienie", "stars": 0}}, {"ENG": "benefit", "PL": {"translation": "korzy\u015b\u0107", "stars": 0}}]
+[
+  {
+    "ENG": "holiday",
+    "PL": {
+      "translation": "wakacje",
+      "stars": 0
+    }
+  },
+  {
+    "ENG": "development",
+    "PL": {
+      "translation": "rozw\u00f3j",
+      "stars": 0
+    }
+  },
+  {
+    "ENG": "specific",
+    "PL": {
+      "translation": "konkretny",
+      "stars": 0
+    }
+  },
+  {
+    "ENG": "efficiency",
+    "PL": {
+      "translation": "efektywno\u015b\u0107",
+      "stars": 0
+    }
+  },
+  {
+    "ENG": "loss",
+    "PL": {
+      "translation": "strata",
+      "stars": 0
+    }
+  },
+  {
+    "ENG": "you",
+    "PL": {
+      "translation": "Ty",
+      "stars": 0
+    }
+  },
+  {
+    "ENG": "foundation",
+    "PL": {
+      "translation": "Fundacja",
+      "stars": 0
+    }
+  },
+  {
+    "ENG": "remind",
+    "PL": {
+      "translation": "przypomnie\u0107",
+      "stars": 0
+    }
+  },
+  {
+    "ENG": "order",
+    "PL": {
+      "translation": "zam\u00f3wienie",
+      "stars": 0
+    }
+  },
+  {
+    "ENG": "benefit",
+    "PL": {
+      "translation": "korzy\u015b\u0107",
+      "stars": 0
+    }
+  }
+]
