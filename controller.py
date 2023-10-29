@@ -123,6 +123,7 @@ if __name__ == "__main__":
 
 # TODO 1: Maybe add more leeway for the user to input words: allow single letter spelling mistakes.
 # TODO 3: Maybe add tests.
+# TODO 4: Maybe display stars next to words in the menu.
 
 
 

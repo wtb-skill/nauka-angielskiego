@@ -23,34 +23,34 @@ class Model:
         self.words_mastered = self.get_words_mastered()
         self.quiz_date = self.get_quiz_date()
 
-    def get_starting_list(self) -> List[WordDict]:
+    def get_starting_list(self, path=STARTER) -> List[WordDict]:
         """Load the starting list of words from a file."""
-        with open(self.STARTER, "r", encoding="utf-8") as file:
+        with open(path, "r", encoding="utf-8") as file:
             data = json.load(file)
         return data
 
-    def get_words_to_learn(self) -> List[WordDict]:
+    def get_words_to_learn(self, path=TO_LEARN) -> List[WordDict]:
         """Load the words to learn from a file or use the starting list if not found."""
         try:
-            with open(self.TO_LEARN, "r", encoding="utf-8") as file:
+            with open(path, "r", encoding="utf-8") as file:
                 data = json.load(file)
         except FileNotFoundError:
             data = self.starting_list
         return data
 
-    def get_hand(self) -> List[WordDict]:
+    def get_hand(self, path=HAND) -> List[WordDict]:
         """Load the words currently in the user's hand from a file or return an empty list if not found."""
         try:
-            with open(self.HAND, 'r', encoding='utf-8') as file:
+            with open(path, 'r', encoding='utf-8') as file:
                 data = json.load(file)
         except FileNotFoundError:
             data = []
         return data
 
-    def get_words_mastered(self) -> List[WordDict]:
+    def get_words_mastered(self, path=MASTERED) -> List[WordDict]:
         """Load the words that the user has mastered from a file or return an empty list if not found."""
         try:
-            with open(self.MASTERED, "r", encoding="utf-8") as file:
+            with open(path, "r", encoding="utf-8") as file:
                 data = json.load(file)
         except FileNotFoundError:
             data = []
@@ -81,19 +81,19 @@ class Model:
         self.words_mastered.append(word)
         self.save_mastered()
 
-    def save_hand(self):
+    def save_hand(self, path=HAND):
         """Save the words in hand to a file."""
-        with open(self.HAND, 'w', encoding='utf-8') as file:
+        with open(path, 'w', encoding='utf-8') as file:
             json.dump(self.hand, file)
 
-    def save_to_learn(self):
+    def save_to_learn(self, path=TO_LEARN):
         """Save the words to learn to a file."""
-        with open(self.TO_LEARN, 'w', encoding='utf-8') as file:
+        with open(path, 'w', encoding='utf-8') as file:
             json.dump(self.words_to_learn, file)
 
-    def save_mastered(self):
+    def save_mastered(self, path=MASTERED):
         """Save the words that the user has mastered to a file."""
-        with open(self.MASTERED, 'w', encoding='utf-8') as file:
+        with open(path, 'w', encoding='utf-8') as file:
             json.dump(self.words_mastered, file)
 
     @staticmethod
@@ -112,20 +112,20 @@ class Model:
         """Get the number of stars in a word's status."""
         return word['PL']['stars']
 
-    def get_quiz_date(self) -> Dict[str, str]:
+    def get_quiz_date(self, path=SETTINGS) -> Dict[str, str]:
         """Get the date of the last quiz from the settings or return a default value if not found."""
         try:
-            with open(self.SETTINGS, "r", encoding="utf-8") as file:
+            with open(path, "r", encoding="utf-8") as file:
                 data = json.load(file)
         except FileNotFoundError:
             data = {"data": "0"}
         return data
 
-    def save_quiz_date(self):
+    def save_quiz_date(self, path=SETTINGS):
         """Save the date of the last quiz to settings."""
         today = self.today()
         self.quiz_date = {"data": today}
-        with open(self.SETTINGS, "w", encoding="utf-8") as file:
+        with open(path, "w", encoding="utf-8") as file:
             json.dump(self.quiz_date, file)
 
     @staticmethod
