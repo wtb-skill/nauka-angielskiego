@@ -54,8 +54,8 @@ class Word:
     def to_dict(self):
         """Return a dictionary representation of the Word object."""
         return {
-            "eng": self.eng,
-            "pol": self.pol,
+            "ENG": self.eng,
+            "PL": self.pol,
             "stars": self.stars
         }
 
@@ -72,8 +72,8 @@ class WordList:
         words = []
         for entry in self.data:
             word = Word(
-                eng=entry['eng'],
-                pol=entry['pol'],
+                eng=entry['ENG'],
+                pol=entry['PL'],
                 stars=entry['stars']
             )
             words.append(word)
@@ -87,9 +87,9 @@ class WordList:
 
     def update_word(self, word):
         if word in self.words:
-            self.add_word(word)
-        else:
             self.remove_word(word)
+        else:
+            self.add_word(word)
         self.save()  # not sure if it can be done smarter (logic: change occurs->save)
 
     def choose_random_word(self):
@@ -290,12 +290,20 @@ class Model:
 
 if __name__ == "__main__":
     words_to_learn = WordsToLearn()
+    words_in_hand = WordsInHand()
+    print(words_in_hand.size)
+    print(words_to_learn.size)
+    word = words_to_learn.choose_random_word()
+    words_to_learn.update_word(word)
+    words_in_hand.update_word(word)
+    print(words_in_hand.size)
+    print(words_to_learn.size)
 
-    print(words_to_learn.size)
-    word_to_remove = words_to_learn.choose_random_word()
-    words_to_learn.remove_word(word_to_remove)
-    print(words_to_learn.size)
-    words_to_learn.save()
+    # print(words_to_learn.size)
+    # word_to_remove = words_to_learn.choose_random_word()
+    # words_to_learn.remove_word(word_to_remove)
+    # print(words_to_learn.size)
+    # words_to_learn.save()
 
 
 
