@@ -93,7 +93,7 @@ class Controller:
 
         :return: bool: True if the first quiz of the day, False otherwise.
         """
-        if self.model.get_quiz_date()["data"] == self.model.today():
+        if self.model.get_quiz_date()["data"] == self.model.get_current_date():
             return False
         else:
             return True

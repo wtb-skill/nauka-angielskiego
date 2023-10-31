@@ -1,13 +1,13 @@
+import os, sys
+sys.path.insert(0, os.getcwd())  # necessary order for tests to be placed in a subfolder
 import pytest
 from model import Model
 from controller import Controller
 from pathlib import Path
 
-# sys.path.insert(0, os.getcwd())
-
 
 def test_if_starting_list_exists():
-    assert Path("VocabularyData/3000-Most-Common-English-Words").is_file()
+    assert Path("../VocabularyData/3000-Most-Common-English-Words").is_file()
 
 
 def test_is_hand_size_equal_to_10():
@@ -26,7 +26,7 @@ def test_is_words_mastered_being_created():
         }
     }
     model.update_words_mastered(test_word)
-    assert Path("VocabularyData/words_mastered.json").is_file()
+    assert Path("../VocabularyData/words_mastered.json").is_file()
     model.words_mastered.remove(test_word)
     model.save_mastered()
 
