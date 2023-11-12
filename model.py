@@ -61,35 +61,38 @@ class Word:
 
 
 class WordList:
-    """Class for managing whole lists of Word objects. (load words, save words, add word, remove word,
+    """Class for managing lists of Word objects. (load words, save words, add word, remove word,
     draw one random word)"""
     def __init__(self, file):
         self.file_manager = FileManager(file)
         self.data = self.file_manager.load()
         self.words = self.get_words()
+        self.size = len(self.words)
 
     def get_words(self):
         words = []
         for entry in self.data:
-            word = Word(
+            _word = Word(
                 eng=entry['ENG'],
                 pol=entry['PL'],
                 stars=entry['stars']
             )
-            words.append(word)
+            words.append(_word)
         return words
 
-    def add_word(self, word):
-        self.words.append(word)
+    def add_word(self, _word):
+        self.words.append(_word)
+        self.size += 1
 
-    def remove_word(self, word):
-        self.words.remove(word)
+    def remove_word(self, _word):
+        self.words.remove(_word)
+        self.size -= 1
 
-    def update_word(self, word):
-        if word in self.words:
-            self.remove_word(word)
+    def update_word(self, _word):
+        if _word in self.words:
+            self.remove_word(_word)
         else:
-            self.add_word(word)
+            self.add_word(_word)
         self.save()  # not sure if it can be done smarter (logic: change occurs->save)
 
     def choose_random_word(self):
@@ -98,16 +101,16 @@ class WordList:
 
     def to_dict(self):
         self.data = []
-        for word in self.words:
+        for _ in self.words:
             self.data.append(word.to_dict())
 
     def save(self):
         self.to_dict()
         self.file_manager.save(self.data)
 
-    @property
-    def size(self):
-        return len(self.words)
+    # @property
+    # def size(self):
+    #     return len(self.words)
 
 
 class WordsToLearn(WordList):
