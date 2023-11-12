@@ -6,6 +6,8 @@ class MenuController:
         self._menu = Menu()
 
     def display_main_menu(self) -> None:
+        #  TODO: This could be later extracted to a separate view,
+        #   once we have more views.
         print(
             "================================================\n"
             "3000 most common English words App\n"
