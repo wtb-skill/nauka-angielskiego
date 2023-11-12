@@ -1,9 +1,15 @@
-from app.view.menu import MenuView
+from app.model.menu import Menu
 
 
 class MenuController:
     def __init__(self) -> None:
-        self.view = MenuView()
+        self._menu = Menu()
 
     def display_main_menu(self) -> None:
-        self.view.display_menu()
+        print(
+            "================================================\n"
+            "3000 most common English words App\n"
+            "================================================"
+        )
+        for number, item in self._menu.main_menu.items():
+            print(f"[{number}]: {item}")
