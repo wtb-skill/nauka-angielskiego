@@ -1,5 +1,7 @@
 # nauka-angielskiego
 
+Spec:
+- Python 3.10
 
 Basic Concept:
 - imports 3000 most common English words from [3000-English-words list]

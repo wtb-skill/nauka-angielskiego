@@ -1,10 +1,3 @@
-import pytest
-from controller import Controller
-from unittest.mock import patch, mock_open
-from datetime import datetime
-import json
-
-
 # def test_can_you_start_the_quiz_more_than_once_per_day():
 #     controller = Controller()
 #     # Check if it's the first quiz of the day
