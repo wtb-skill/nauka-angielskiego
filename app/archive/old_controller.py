@@ -1,7 +1,8 @@
-from model import Model
-from view import View
 from pathlib import Path
 from typing import Dict, Union
+
+from app.archive.old_model import Model
+from app.archive.old_view import View
 
 
 class Controller:
@@ -98,28 +99,6 @@ class Controller:
         else:
             return True
 
-
-if __name__ == "__main__":
-    controller = Controller()
-    if controller.it_is_first_run():
-        controller.first_run()
-    while True:
-        controller.view.display_menu()
-        option = controller.view.menu_option()
-
-        if option == 1:
-            if controller.first_quiz_today():
-                controller.quiz()
-                controller.check_words_for_mastery()
-                controller.model.save_quiz_date()
-            else:
-                controller.view.quiz_completed()
-        elif option == 2:
-            controller.display_hand()
-        elif option == 3:
-            controller.display_words_mastered()
-        else:
-            break
 
 # TODO 1: Maybe add more leeway for the user to input words: allow single letter spelling mistakes.
 # TODO 3: Maybe add tests.

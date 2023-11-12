@@ -70,4 +70,3 @@ class View:
     def quiz_completed():
         """Display a message when the user has already completed the quiz for the day."""
         print("You have already completed the quiz for today. Come back tomorrow! <3")
-
