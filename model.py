@@ -60,11 +60,36 @@ class Word:
         }
 
 
+class WordListNew:
+    """Class for managing lists of Word objects. (size, add word, remove word, draw one random word)"""
+    def __init__(self, words):
+        self.words = words
+        self.size = len(self.words)
+
+    def _add_word(self, _word):
+        self.words.append(_word)
+        self.size += 1
+
+    def _remove_word(self, _word):
+        self.words.remove(_word)
+        self.size -= 1
+
+    def update_word(self, _word):
+        if _word in self.words:
+            self._remove_word(_word)
+        else:
+            self._add_word(_word)
+
+    def choose_random_word(self):
+        random_word = self.words[randint(0, self.size - 1)]
+        return random_word
+
+
 class WordList:
     """Class for managing lists of Word objects. (load words, save words, add word, remove word,
     draw one random word)"""
     def __init__(self, file):
-        self.file_manager = FileManager(file)
+        self.file_manager = FileManager(file)  # to controller
         self.data = self.file_manager.load()
         self.words = self.get_words()
         self.size = len(self.words)
@@ -96,7 +121,7 @@ class WordList:
         self.save()  # not sure if it can be done smarter (logic: change occurs->save)
 
     def choose_random_word(self):
-        random_word = self.words[randint(0, self.size)]
+        random_word = self.words[randint(0, self.size - 1)]
         return random_word
 
     def to_dict(self):
@@ -127,6 +152,9 @@ class WordsToLearn(WordList):
 class WordsInHand(WordList):
     def __init__(self, file=VocabularyData.HAND):
         super().__init__(file)
+
+    def check_if_size_is_10(self):
+        return self.size == 10
 
 
 class WordsMastered(WordList):
