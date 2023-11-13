@@ -1,5 +1,5 @@
-from model import Model
-from view import View
+from app.model.model import Model
+from app.view.view import View
 from pathlib import Path
 from typing import Dict, Union
 

@@ -1,9 +1,7 @@
 import os, sys
 sys.path.insert(0, os.getcwd())
-import pytest
-from controller import Controller
+from app.controller.controller import Controller
 from unittest.mock import patch, mock_open
-from datetime import datetime
 import json
 
 

@@ -15,7 +15,7 @@ class VocabularyData:
 
 
 class FileManager:
-    """Class for managing loading and saving data."""
+    """Class for managing loading and saving json data."""
     def __init__(self, filename):
         self.filename = filename
 

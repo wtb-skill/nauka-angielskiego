@@ -1,8 +1,8 @@
 import os, sys
 sys.path.insert(0, os.getcwd())  # necessary order for tests to be placed in a subfolder
 import pytest
-from model import Model
-from controller import Controller
+from app.model.model import Model
+from app.controller.controller import Controller
 from pathlib import Path
 
 
