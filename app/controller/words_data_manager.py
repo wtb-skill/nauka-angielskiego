@@ -7,6 +7,7 @@ from typing import List, Dict, Type, Union
 
 
 class WordsDataManager:
+    # simple version:
     # def __init__(self, filename: str):
     #     self.filename = filename
     #     self.file_manager = FileManager(self.filename)
@@ -22,6 +23,7 @@ class WordsDataManager:
         """Load words data from a JSON file."""
         return self.file_manager.load()
 
+    # simple version:
     # def create_word_list(self) -> WordList:
     #     """Create a WordList instance from the loaded data."""
     #     word_list_data = self.load_words_data()

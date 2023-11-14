@@ -2,7 +2,7 @@ from app.controller.word_list_creator import WordListCreator
 from app.controller.words_data_manager import WordsDataManager
 from app.model.vocabulary_data import *
 from app.model.word_list import WordList, WordsInHand, WordsToLearn
-from app.controller.first_run import FirstRun
+from app.controller.quiz import QuizController
 
 
 def run():
@@ -37,6 +37,7 @@ def run():
     #
     # for word in words_in_hand.words:
     #     print(word)
-    first_run = FirstRun
-    first_run()
+    quiz = QuizController()
+    quiz.initialize()
+
 
