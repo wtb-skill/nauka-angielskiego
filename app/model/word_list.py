@@ -33,7 +33,7 @@ class WordsInHand(WordList):
     def __init__(self, words_in_hand_data):
         super().__init__(words_in_hand_data)
 
-    def check_if_size_is_10(self):
+    def is_size_10(self):
         return self.size == 10
 
 
@@ -112,7 +112,7 @@ class WordsInHand(WordList):
     def __init__(self, file=VocabularyData.HAND):
         super().__init__(file)
 
-    def check_if_size_is_10(self):
+    def is_size_10(self):
         return self.size == 10
 
 

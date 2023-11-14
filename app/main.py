@@ -27,7 +27,7 @@ def run():
     # # words_to_learn_manager.save_word_list(words_to_learn)
     # # words_in_hand_manager.save_word_list(words_in_hand)
     #
-    # while not words_in_hand.check_if_size_is_10():
+    # while not words_in_hand.is_size_10():
     #     # Choose a random word:
     #     random_word = words_to_learn.choose_random_word()
     #
@@ -38,6 +38,6 @@ def run():
     # for word in words_in_hand.words:
     #     print(word)
     quiz = QuizController()
-    quiz.initialize()
+    quiz.run_quiz()
 
 
