@@ -1,12 +1,14 @@
-from app.model.model import Word
+from app.model.word import Word
+from typing import List, Dict
 
 
-class CreateListOfWord:
-    def __init__(self, data):
+class WordListCreator:
+    def __init__(self, data: List[Dict]):
         self.data = data
+        self.words = self.create_list_of_words()
 
     @staticmethod
-    def _create_word(word_dict):
+    def _create_word(word_dict: Dict):
         word = Word(
             eng=word_dict['ENG'],
             pol=word_dict['PL'],
