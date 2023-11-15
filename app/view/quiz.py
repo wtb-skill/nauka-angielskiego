@@ -26,16 +26,6 @@ class QuizView:
         print("Wrong!")
 
     @staticmethod
-    def word_mastered(word: Word):
-        """Display a message when a word is mastered."""
-        print(f"The word: '{word.eng}' got mastered!")
-
-    @staticmethod
-    def new_word(word: Word):
-        """Display a new word for the user to learn."""
-        print(f"The new word for you to learn is: '{word.eng}'!")
-
-    @staticmethod
     def quiz_completed():
         """Display a message when the user has already completed the quiz for the day."""
         print("You have already completed the quiz for today. Come back tomorrow! <3")

@@ -11,22 +11,23 @@ class QuizController:
         self._words_to_learn = self._words_to_learn_manager.create_word_list()
         self._words_in_hand_manager = WordsDataManager(WordsInHand)
         self._words_in_hand = self._words_in_hand_manager.create_word_list()
-        self._words_mastered = WordsDataManager(WordsMastered)
-        self._words_mastered = self._words_mastered.create_word_list()
 
     def run_quiz(self) -> None:
 
-        if not self._words_in_hand.is_size_10():
+        if not self._words_in_hand.is_size_10():  # this logic will go elsewhere
             self._initialize()
 
         for word in self._words_in_hand.words:
-            if word.stars < 3:
-                self.ask_for_pol_translation(word=word)
-            else:
-                self.ask_for_eng_translation(word=word)
+            self._ask_for_translation(word=word)
         self._words_in_hand_manager.save_word_list(self._words_in_hand)
 
-    def ask_for_pol_translation(self, word):
+    def _ask_for_translation(self, word):
+        if word.stars < 3:
+            self._ask_for_pol_translation(word=word)
+        else:
+            self._ask_for_eng_translation(word=word)
+
+    def _ask_for_pol_translation(self, word):
         answer = self._view.display_quiz_eng_to_pol(word)
         if self._is_polish_translation_valid(answer=answer, word=word):
             self._view.display_correct()
@@ -35,7 +36,7 @@ class QuizController:
             self._view.display_wrong()
             word.remove_star()
 
-    def ask_for_eng_translation(self, word):
+    def _ask_for_eng_translation(self, word):
         answer = self._view.display_quiz_pol_to_eng(word)
         if self._is_english_translation_valid(answer=answer, word=word):
             self._view.display_correct()
