@@ -21,7 +21,7 @@ class ManageDate:
         return today
 
     def _is_quiz_and_current_date_same(self):
-        return self.quiz_date == self.current_date
+        return not self.quiz_date == self.current_date
 
 
 '''  OLD: 

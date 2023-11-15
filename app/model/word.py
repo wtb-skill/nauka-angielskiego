@@ -6,7 +6,8 @@ class Word:
         self.stars = stars
 
     def __str__(self):
-        return f"English: {self.eng:<15} Polish: {self.pol:<15}"
+        stars_str = '*' * self.stars
+        return f"English: {self.eng:<15} Polish: {self.pol:<15} {stars_str:15}"
 
     def add_star(self):
         """Add a star to a word's status."""
