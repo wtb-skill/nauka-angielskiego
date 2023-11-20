@@ -5,6 +5,7 @@ from app.controller.menu import MenuController
 
 
 def run():
+    # Todo 1: Add initialise class to create files and check their integrity. (Karol)
     while True:
         menu = MenuController()
         menu.display_menu()

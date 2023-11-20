@@ -1,5 +1,5 @@
 from app.controller.words_data_manager import WordsDataManager
-from app.model.word_list import WordsInHand, WordsToLearn, WordsMastered
+from app.model.word_list import WordsInHand, WordsToLearn
 from app.model.word import Word
 from app.view.quiz import QuizView
 
@@ -17,7 +17,7 @@ class QuizController:
         if not self._words_in_hand.is_size_10():  # this logic will go elsewhere
             self._initialize()
 
-        for word in self._words_in_hand.words:
+        for word in self._words_in_hand.words:  # do not change it, it's the right quiz logic:
             self._ask_for_translation(word=word)
         self._words_in_hand_manager.save_word_list(self._words_in_hand)
 

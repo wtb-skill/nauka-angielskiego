@@ -1,6 +1,6 @@
 from typing import List, Dict
 from app.controller.word_list_creator import WordListCreator
-from app.model.word_list import WordList, WordsInHand
+from app.model.word_list import WordList, WordsInHand, WordsMastered
 from app.model.file_manager import FileManager
 from app.model.vocabulary_data import *
 from typing import List, Dict, Type, Union
@@ -30,7 +30,7 @@ class WordsDataManager:
     #     word_list_creator = WordListCreator(word_list_data)
     #     return WordList(word_list_creator.words)
 
-    def create_word_list(self) -> WordList | WordsInHand:
+    def create_word_list(self) -> WordList | WordsInHand | WordsMastered:
         """Create a WordList instance from the loaded data."""
         word_list_data = self.load_words_data()
         word_list_creator = WordListCreator(word_list_data)

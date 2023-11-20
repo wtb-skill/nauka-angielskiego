@@ -5,7 +5,7 @@ from typing import List, Dict, Type, Union
 from app.view.quiz import QuizView
 
 
-class DateController:
+class DateController:  # do ogarnięcia i zmiany
     def __init__(self):
         self._file_manager = FileManager(VocabularyData.SETTINGS)
         self.date_data = self._load_date_data()
