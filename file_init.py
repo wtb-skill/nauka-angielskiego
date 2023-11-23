@@ -130,11 +130,11 @@ class FileInit:
 
     def _create_hand_file(self):
         with open(self.hand_path, 'w') as f:
-            f.write('')
+            f.write('""')
 
     def _create_mastered_file(self):
         with open(self.mastered_path, 'w') as f:
-            f.write('')
+            f.write('""')
 
     def _create_settings_file(self):
         with open(self.settings_path, 'w') as f:
