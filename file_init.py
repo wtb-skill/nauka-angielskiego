@@ -7,7 +7,6 @@ from app.model.vocabulary_data import VocabularyData
 
 
 class FileInit:
-
     STARTER_MD5_SUM = '8737a00c0deac85c47b77b4697f2ec16'
     STARTER_SHA1_SUM = '0e79af375bb0b75f5c1910c935c5b91185d85aac'
     STARTER_SHA256_SUM = 'b138cbdcc4501f6eb769811c71408392144569281815116c7a60c31bb49e1f95'
@@ -45,8 +44,10 @@ class FileInit:
                                       json_length=True,
                                       json_key=True,
                                       )
+        self.hand_exist = self.hand_results.exist
         self.hand_length = self.hand_results.json_length
         self.hand_stars_count_ok = self.check_hand_stars_count()
+        # TODO: check for non-empty strings
 
         # checking MASTERED
         self.mastered_path = VocabularyData.MASTERED
@@ -63,6 +64,10 @@ class FileInit:
                                           json_length=True,
                                           )
         self.settings_exist = self.settings_results.exist
+
+        # checking first run
+        self.is_first_run = None
+        self.check_first_run()
 
         # results
         self.save_results()
@@ -85,6 +90,53 @@ class FileInit:
             if min(_stars_count) >= self.HAND_MIN_STARS and max(_stars_count) <= self.HAND_MAX_STARS:
                 return True
         return False
+
+    def check_first_run(self):
+        # first run: only STARTER file exist
+        if self.starter_exist and self.starter_checksum_ok:
+
+            if all([self.settings_exist,
+                    self.mastered_exist,
+                    self.to_learn_exist,
+                    self.hand_exist]):
+                # all files exist, not the first run
+                self.is_first_run = False
+                FileInitView.all_files_ok()
+
+            elif all([not self.settings_exist,
+                      not self.mastered_exist,
+                      not self.to_learn_exist,
+                      not self.hand_exist]):
+                # none files exist, first run, create files
+                self.is_first_run = True
+                self._create_to_learn_file()
+                self._create_hand_file()
+                self._create_mastered_file()
+                self._create_settings_file()
+
+            else:
+                FileInitView.some_files_missing()
+
+        else:
+            FileInitView.starter_missing_or_corrupted()
+
+    def _create_to_learn_file(self):
+        with open(self.starter_path, 'r') as f:
+            _content = f.read()
+        with open(self.to_learn_path, 'w') as f:
+            f.write(_content)
+
+    def _create_hand_file(self):
+        with open(self.hand_path, 'w') as f:
+            f.write('')
+
+    def _create_mastered_file(self):
+        with open(self.mastered_path, 'w') as f:
+            f.write('')
+
+    def _create_settings_file(self):
+        with open(self.settings_path, 'w') as f:
+            f.write('{"date": "0000-00-00"}')
 
     def save_results(self):
         _timestamp = datetime.datetime.now()
@@ -121,7 +173,6 @@ class FileInit:
 
 
 class FileTools:
-
     ALGORITHMS = {'sha1', 'md5', 'sha256', 'sha512', 'asa'}
 
     def __init__(self,
@@ -202,6 +253,30 @@ class FileTools:
             return _length
         except ValueError:
             return None
+
+
+# TODO: create FileInitLogic class
+# check if STARTER exist
+#   if not raise exc
+# is this first run ever? (only starter exist)
+# if yes: create: words_to_learn (copy STARTER)
+#       create words_in_hand (empty json)
+#       create mastered (empty json)
+#       create settings ({"date": "0000-00-00"})
+#
+class FileInitView:
+
+    @staticmethod
+    def starter_missing_or_corrupted():
+        print('STARTER missing or corrupted')
+
+    @staticmethod
+    def some_files_missing():
+        print('Some files missing')
+
+    @staticmethod
+    def all_files_ok():
+        print('All files OK')
 
 
 if __name__ == '__main__':

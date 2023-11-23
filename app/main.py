@@ -9,7 +9,6 @@ import file_init
 
 def run():
     fi = file_init.FileInit()
-    return fi
     # Todo 1: Add initialise class to create files and check their integrity. (Karol)
     while True:
         menu = MenuController()
@@ -32,7 +31,7 @@ def run():
         else:
             break
 
-
+    return fi
 
 
 
