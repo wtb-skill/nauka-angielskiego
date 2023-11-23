@@ -4,7 +4,7 @@ from app.controller.date import DateController
 from app.controller.menu import MenuController
 
 # branch test
-import file_init
+from app.model import file_init
 
 
 def run():
