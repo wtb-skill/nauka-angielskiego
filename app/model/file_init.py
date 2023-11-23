@@ -257,15 +257,8 @@ class FileTools:
             return None
 
 
-# TODO: create FileInitLogic class
-# check if STARTER exist
-#   if not raise exc
-# is this first run ever? (only starter exist)
-# if yes: create: words_to_learn (copy STARTER)
-#       create words_in_hand (empty json)
-#       create mastered (empty json)
-#       create settings ({"date": "0000-00-00"})
-#
+# todo: move View part of the class to view directory
+
 class FileInitView:
 
     @staticmethod
