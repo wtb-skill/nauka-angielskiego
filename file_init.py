@@ -114,6 +114,8 @@ class FileInit:
                 self._create_mastered_file()
                 self._create_settings_file()
 
+                FileInitView.first_run()
+
             else:
                 FileInitView.some_files_missing()
 
@@ -277,6 +279,10 @@ class FileInitView:
     @staticmethod
     def all_files_ok():
         print('All files OK')
+
+    @staticmethod
+    def first_run():
+        print('First run, files created')
 
 
 if __name__ == '__main__':
