@@ -4,8 +4,12 @@ from app.controller.date import DateController
 from app.controller.menu import MenuController
 
 # branch test
+import file_init
+
 
 def run():
+    fi = file_init.FileInit()
+    return fi
     # Todo 1: Add initialise class to create files and check their integrity. (Karol)
     while True:
         menu = MenuController()
