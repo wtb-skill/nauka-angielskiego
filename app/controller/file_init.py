@@ -9,7 +9,7 @@ from app.view.file_init import FileInitView
 class FileInitController:
     LOGGING_ON_SCREEN = True
     LOGGING_TO_FILE = True
-    LOGGING_FILEPATH = '../../logs/log_file_init.txt'
+    LOGGING_FILEPATH = 'logs/log_file_init.txt'
 
     LOGGING_RESULTS_FILEPATH = 'logs/log_results.txt'
 
