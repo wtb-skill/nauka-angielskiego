@@ -4,9 +4,15 @@ import json
 from typing import Optional
 from pathlib import Path
 from app.model.vocabulary_data import VocabularyData
+from app.view.file_init import FileInitView
 
 
 class FileInit:
+
+    LOGGING_ON_SCREEN = True
+    LOGGING_TO_FILE = True
+    LOGGING_FILEPATH = '../../logs/log_file_init.txt'
+
     STARTER_MD5_SUM = '8737a00c0deac85c47b77b4697f2ec16'
     STARTER_SHA1_SUM = '0e79af375bb0b75f5c1910c935c5b91185d85aac'
     STARTER_SHA256_SUM = 'b138cbdcc4501f6eb769811c71408392144569281815116c7a60c31bb49e1f95'
@@ -105,7 +111,7 @@ class FileInit:
                     self.hand_exist]):
                 # all files exist, not the first run
                 self.is_first_run = False
-                FileInitView.all_files_ok()
+                FileInitView().all_files_ok()
 
             elif all([not self.settings_exist,
                       not self.mastered_exist,
@@ -118,13 +124,22 @@ class FileInit:
                 self._create_mastered_file()
                 self._create_settings_file()
 
-                FileInitView.first_run()
+                FileInitView(logging_on_screen=self.LOGGING_ON_SCREEN,
+                             logging_to_file=self.LOGGING_TO_FILE,
+                             logging_filepath=self.LOGGING_FILEPATH,
+                             ).first_run()
 
             else:
-                FileInitView.some_files_missing()
+                FileInitView(logging_on_screen=self.LOGGING_ON_SCREEN,
+                             logging_to_file=self.LOGGING_TO_FILE,
+                             logging_filepath=self.LOGGING_FILEPATH,
+                             ).some_files_missing()
 
         else:
-            FileInitView.starter_missing_or_corrupted()
+            FileInitView(logging_on_screen=self.LOGGING_ON_SCREEN,
+                         logging_to_file=self.LOGGING_TO_FILE,
+                         logging_filepath=self.LOGGING_FILEPATH,
+                         ).starter_missing_or_corrupted()
 
     def _create_to_learn_file(self):
         with open(self.starter_path, 'r') as f:
