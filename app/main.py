@@ -3,12 +3,12 @@ from app.controller.mastery import MasteryController
 from app.controller.date import DateController
 from app.controller.menu import MenuController
 
-# branch test
-from app.model import file_init
+
+from app.controller.file_init import FileInitController
 
 
 def run():
-    fi = file_init.FileInit()
+    fic = FileInitController()
     # Todo 1: Add initialise class to create files and check their integrity. (Karol)
     while True:
         menu = MenuController()
@@ -31,7 +31,7 @@ def run():
         else:
             break
 
-    return fi
+    return fic
 
 
 

@@ -7,7 +7,7 @@ from app.model.vocabulary_data import VocabularyData
 from app.view.file_init import FileInitView
 
 
-class FileInit:
+class FileInitController:
 
     LOGGING_ON_SCREEN = True
     LOGGING_TO_FILE = True
@@ -277,4 +277,4 @@ class FileTools:
 
 
 if __name__ == '__main__':
-    file_init = FileInit()
+    file_init = FileInitController()
