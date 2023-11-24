@@ -13,6 +13,8 @@ class FileInitController:
     LOGGING_TO_FILE = True
     LOGGING_FILEPATH = '../../logs/log_file_init.txt'
 
+    LOGGING_RESULTS_FILEPATH = 'logs/log_results.txt'
+
     STARTER_MD5_SUM = '8737a00c0deac85c47b77b4697f2ec16'
     STARTER_SHA1_SUM = '0e79af375bb0b75f5c1910c935c5b91185d85aac'
     STARTER_SHA256_SUM = 'b138cbdcc4501f6eb769811c71408392144569281815116c7a60c31bb49e1f95'
@@ -189,7 +191,7 @@ class FileInitController:
         # add checksum, sha1 used for shortness ;)
         _results['CHECKSUM'] = {'sha1': hashlib.sha1(f'{_results}'.encode()).hexdigest()}
 
-        with open('../../logs/log_results.txt', 'a') as f:
+        with open(self.LOGGING_RESULTS_FILEPATH, 'a') as f:
             f.write(f'{_results}\n')
 
 
