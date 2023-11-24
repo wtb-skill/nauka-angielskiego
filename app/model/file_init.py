@@ -170,7 +170,7 @@ class FileInit:
         # add checksum, sha1 used for shortness ;)
         _results['CHECKSUM'] = {'sha1': hashlib.sha1(f'{_results}'.encode()).hexdigest()}
 
-        with open('file_init.txt', 'a') as f:
+        with open('../../logs/log_results.txt', 'a') as f:
             f.write(f'{_results}\n')
 
 
