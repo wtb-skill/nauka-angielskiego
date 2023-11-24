@@ -1,3 +1,4 @@
+import os
 import datetime
 import hashlib
 import json
@@ -7,6 +8,8 @@ from app.view.file_init import FileInitView
 
 
 class FileInitController:
+
+    LOGGING_DIR = 'logs'
     LOGGING_ON_SCREEN = True
     LOGGING_TO_FILE = True
     LOGGING_FILEPATH = 'logs/log_file_init.txt'
@@ -27,6 +30,9 @@ class FileInitController:
     SETTINGS = None
 
     def __init__(self):
+        # checking LOGGING
+        self.check_logs_dir()
+
         # checking STARTER
         self.starter_path = VocabularyData.STARTER
         self.starter_results = FileInitModel(path=self.starter_path,
@@ -77,6 +83,10 @@ class FileInitController:
 
         # results
         self.save_results()
+
+    def check_logs_dir(self):
+        if not os.path.exists(self.LOGGING_DIR):
+            os.mkdir(self.LOGGING_DIR)
 
     def check_starter_checksum(self) -> bool:
         # iterate all class attributes starting with 'STARTER' and ending with 'SUM'
