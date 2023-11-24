@@ -85,11 +85,15 @@ class FileInit:
             with open(self.hand_path) as f:
                 hand_json = json.load(f)
 
-            # check stars if between HAND_MIN_STARS and HAND_MAX_STARS:
-            _stars_count = [s.get('stars') for s in hand_json]
-            if min(_stars_count) >= self.HAND_MIN_STARS and max(_stars_count) <= self.HAND_MAX_STARS:
-                return True
-        return False
+            try:
+                # check stars if between HAND_MIN_STARS and HAND_MAX_STARS:
+                _stars_count = [s.get('stars') for s in hand_json]
+                if min(_stars_count) >= self.HAND_MIN_STARS and max(_stars_count) <= self.HAND_MAX_STARS:
+                    return True
+            except ValueError:
+                pass
+
+            return False
 
     def check_first_run(self):
         # first run: only STARTER file exist
