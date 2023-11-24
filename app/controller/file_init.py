@@ -111,7 +111,10 @@ class FileInitController:
                     self.hand_exist]):
                 # all files exist, not the first run
                 self.is_first_run = False
-                FileInitView().all_files_ok()
+                FileInitView(logging_on_screen=self.LOGGING_ON_SCREEN,
+                             logging_to_file=self.LOGGING_TO_FILE,
+                             logging_filepath=self.LOGGING_FILEPATH,
+                             ).all_files_ok()
 
             elif all([not self.settings_exist,
                       not self.mastered_exist,
