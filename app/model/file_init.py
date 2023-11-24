@@ -257,26 +257,5 @@ class FileTools:
             return None
 
 
-# todo: move View part of the class to view directory
-
-class FileInitView:
-
-    @staticmethod
-    def starter_missing_or_corrupted():
-        print('STARTER missing or corrupted')
-
-    @staticmethod
-    def some_files_missing():
-        print('Some files missing')
-
-    @staticmethod
-    def all_files_ok():
-        print('All files OK')
-
-    @staticmethod
-    def first_run():
-        print('First run, files created')
-
-
 if __name__ == '__main__':
     file_init = FileInit()
