@@ -160,3 +160,7 @@ cython_debug/
 /.gitignore
 /.idea
 /logs/
+/VocabularyData/settings.json
+/VocabularyData/words_in_hand.json
+/VocabularyData/words_mastered.json
+/VocabularyData/words_to_learn.json
