@@ -11,9 +11,10 @@ class QuizController:
         self._words_to_learn = self._words_to_learn_manager.create_word_list()
         self._words_in_hand_manager = WordsDataManager(WordsInHand)
         self._words_in_hand = self._words_in_hand_manager.create_word_list()
+        self._run()
 
-    def run_quiz(self) -> None:
-        for word in self._words_in_hand.words:  # do not change it, it's the right quiz logic:
+    def _run(self) -> None:
+        for word in self._words_in_hand.words:
             self._ask_for_translation(word=word)
         self._words_in_hand_manager.save_word_list(self._words_in_hand)
 

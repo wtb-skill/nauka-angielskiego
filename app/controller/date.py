@@ -23,7 +23,8 @@ class DateController:  # do ogarnięcia i zmiany
         _quiz_date_data = {"date": self.current_date}
         self._file_manager.save(_quiz_date_data)
 
-    def display_message_that_quiz_was_done_today(self):
+    @staticmethod
+    def display_message_that_quiz_was_done_today():
         _view = QuizView()
         _view.quiz_completed()
 

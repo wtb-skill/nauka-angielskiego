@@ -13,6 +13,7 @@ class MasteryController:
         self._words_in_hand = self._words_in_hand_manager.create_word_list()
         self._words_mastered_manager = WordsDataManager(WordsMastered)
         self._words_mastered = self._words_mastered_manager.create_word_list()
+        self._check_words_for_mastery()
 
     def _is_mastered(self, word: Word):
         """
@@ -31,7 +32,7 @@ class MasteryController:
             self._words_in_hand_manager.save_word_list(self._words_in_hand)
             self._words_mastered_manager.save_word_list(self._words_mastered)
 
-    def check_words_for_mastery(self):
+    def _check_words_for_mastery(self):
         """Checks words in the hand for mastery and updates their status."""
         for word in self._words_in_hand.words:
             self._is_mastered(word)
