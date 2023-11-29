@@ -16,16 +16,16 @@ class QuizView:
         return user_answer
 
     @staticmethod
-    def display_correct():
+    def display_correct() -> None:
         """Display a message when the user's answer is correct."""
         print("Correct!")
 
     @staticmethod
-    def display_wrong():
+    def display_wrong() -> None:
         """Display a message when the user's answer is wrong."""
         print("Wrong!")
 
     @staticmethod
-    def quiz_completed():
+    def quiz_completed() -> None:
         """Display a message when the user has already completed the quiz for the day."""
         print("You have already completed the quiz for today. Come back tomorrow! <3")

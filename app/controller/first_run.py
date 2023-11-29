@@ -14,8 +14,7 @@ class FirstRun:
 
     def _initialize(self) -> None:
         """
-        Initiates the first run of the application
-        by putting 10 new words in hand.
+        Initiates the first run of the application by putting 10 new words in hand.
         """
         for _ in range(0, 10):
             new_word = self._words_to_learn.choose_random_word()

@@ -3,13 +3,13 @@ from datetime import datetime
 
 class ManageDate:
     """Class for managing quiz date and current date."""
-    def __init__(self, settings_data):
+    def __init__(self, settings_data: dict) -> None:
         self.settings_data = settings_data
         self.current_date = self._get_current_date()
         self.quiz_date = self._get_quiz_date()
         self.are_dates_the_same = self._is_quiz_and_current_date_same
 
-    def _get_quiz_date(self):
+    def _get_quiz_date(self) -> str:
         """Get the quiz date in a string format (YYYY-MM-DD)."""
         quiz_date = self.settings_data["date"]
         return quiz_date
@@ -20,7 +20,7 @@ class ManageDate:
         today = str(datetime.today()).split(" ")[0]
         return today
 
-    def _is_quiz_and_current_date_same(self):
+    def _is_quiz_and_current_date_same(self) -> bool:
         return not self.quiz_date == self.current_date
 
 

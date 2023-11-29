@@ -1,49 +1,48 @@
 from random import randint
-from typing import List, Dict, Union
+from typing import List
 from app.model.word import Word
-import os
 
 
 class WordList:
     """Class for managing lists of Word objects. (size, add word, remove word, draw one random word)"""
-    def __init__(self, words: List[Word]):
+    def __init__(self, words: List[Word]) -> None:
         self.words = words
         self.size = len(self.words)
 
-    def _add_word(self, _word):
+    def _add_word(self, _word: Word) -> None:
         self.words.append(_word)
         self.size += 1
 
-    def _remove_word(self, _word):
+    def _remove_word(self, _word: Word) -> None:
         self.words.remove(_word)
         self.size -= 1
 
-    def update_word(self, _word):
+    def update_word(self, _word: Word) -> None:
         if _word in self.words:
             self._remove_word(_word)
         else:
             self._add_word(_word)
 
-    def choose_random_word(self):
+    def choose_random_word(self) -> Word:
         random_word = self.words[randint(0, self.size - 1)]
         return random_word
 
 
 class WordsInHand(WordList):
-    def __init__(self, words_in_hand_data):
+    def __init__(self, words_in_hand_data: List[Word]) -> None:
         super().__init__(words_in_hand_data)
 
-    def is_size_10(self):
+    def is_size_10(self) -> bool:
         return self.size == 10
 
 
 class WordsMastered(WordList):
-    def __init__(self, words_mastered_data):
+    def __init__(self, words_mastered_data: List[Word]) -> None:
         super().__init__(words_mastered_data)
 
 
 class WordsToLearn(WordList):
-    def __init__(self, words_to_learn_data):
+    def __init__(self, words_to_learn_data: List[Word]) -> None:
         super().__init__(words_to_learn_data)
 
 

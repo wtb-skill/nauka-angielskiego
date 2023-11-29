@@ -11,17 +11,17 @@ class MenuController:
         self._words_mastered_manager = WordsDataManager(WordsMastered)
         self._words_mastered = self._words_mastered_manager.create_word_list()
 
-    def display_menu(self):
+    def display_menu(self) -> None:
         self._menu.display_menu()
 
-    def get_user_input(self):
+    def get_user_input(self) -> int:
         return self._menu.menu_option()
 
-    def display_hand(self):
+    def display_hand(self) -> None:
         for word in self._words_in_hand.words:
             print(word)
 
-    def display_words_mastered(self):
+    def display_words_mastered(self) -> None:
         for word in self._words_mastered.words:
             print(word)
 

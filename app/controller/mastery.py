@@ -15,10 +15,9 @@ class MasteryController:
         self._words_mastered = self._words_mastered_manager.create_word_list()
         self._check_words_for_mastery()
 
-    def _is_mastered(self, word: Word):
+    def _is_mastered(self, word: Word) -> None:
         """
         Checks if a word is mastered and updates its status accordingly.
-
         """
         if word.stars == 6:
             self._view.display_word_is_mastered(word)
@@ -32,7 +31,7 @@ class MasteryController:
             self._words_in_hand_manager.save_word_list(self._words_in_hand)
             self._words_mastered_manager.save_word_list(self._words_mastered)
 
-    def _check_words_for_mastery(self):
+    def _check_words_for_mastery(self) -> None:
         """Checks words in the hand for mastery and updates their status."""
         for word in self._words_in_hand.words:
             self._is_mastered(word)

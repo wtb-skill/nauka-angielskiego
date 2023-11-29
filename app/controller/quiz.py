@@ -18,13 +18,13 @@ class QuizController:
             self._ask_for_translation(word=word)
         self._words_in_hand_manager.save_word_list(self._words_in_hand)
 
-    def _ask_for_translation(self, word):
+    def _ask_for_translation(self, word: Word) -> None:
         if word.stars < 3:
             self._ask_for_pol_translation(word=word)
         else:
             self._ask_for_eng_translation(word=word)
 
-    def _ask_for_pol_translation(self, word):
+    def _ask_for_pol_translation(self, word: Word) -> None:
         answer = self._view.display_quiz_eng_to_pol(word)
         if self._is_polish_translation_valid(answer=answer, word=word):
             self._view.display_correct()
@@ -33,7 +33,7 @@ class QuizController:
             self._view.display_wrong()
             word.remove_star()
 
-    def _ask_for_eng_translation(self, word):
+    def _ask_for_eng_translation(self, word: Word) -> None:
         answer = self._view.display_quiz_pol_to_eng(word)
         if self._is_english_translation_valid(answer=answer, word=word):
             self._view.display_correct()
@@ -44,10 +44,6 @@ class QuizController:
 
     @staticmethod
     def _is_polish_translation_valid(answer: str, word: Word) -> bool:
-        # It's good to extract the logic to a separate method like this
-        #  then it's easier to understand the business logic in the run_quiz() method.
-        #  however this could be a method of the Word class if it existed.
-        #  Then you can do: word.is_polish_translation_valid(answer)
         return answer.lower() == word.pol.lower()
 
     @staticmethod
