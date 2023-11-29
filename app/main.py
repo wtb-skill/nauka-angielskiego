@@ -1,6 +1,6 @@
 from app.controller.quiz import QuizController as Quiz
 from app.controller.mastery import MasteryController as Mastery
-from app.controller.date import DateController as Date
+from app.controller.dates import DateController as Date
 from app.controller.menu import MenuController as Menu
 from app.controller.first_run import FirstRun
 from app.controller.file_init import FileInitController as Initialize
