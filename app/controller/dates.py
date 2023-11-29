@@ -2,6 +2,7 @@ from app.model.date_manager import ManageDate
 from app.model.file_manager import FileManager
 from app.model.vocabulary_data import VocabularyData
 from app.view.quiz import QuizView
+from typing import List, Dict
 
 
 class DateController:  # do ogarnięcia i zmiany
@@ -13,7 +14,7 @@ class DateController:  # do ogarnięcia i zmiany
         self.quiz_date = self.manage_date.quiz_date
         self.first_quiz_today = self.manage_date.are_dates_the_same
 
-    def _load_date_data(self) -> dict[str, str]:
+    def _load_date_data(self) -> List[Dict[str, str]]:
         """Load date data from a JSON file."""
         return self._file_manager.load()
 
