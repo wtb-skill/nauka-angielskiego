@@ -4,6 +4,7 @@ from typing import List, Dict
 
 class FileManager:
     """Class for managing loading and saving json data."""
+
     def __init__(self, filename: str) -> None:
         self.filename = filename
 
@@ -16,5 +17,5 @@ class FileManager:
         return data
 
     def save(self, data: List[Dict[str, str]]):
-        with open(self.filename, 'w', encoding='utf-8') as file:
+        with open(self.filename, "w", encoding="utf-8") as file:
             json.dump(data, file)

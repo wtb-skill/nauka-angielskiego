@@ -25,9 +25,3 @@ def run():
             Menu().display_words_mastered()
         else:
             break
-
-
-
-
-
-

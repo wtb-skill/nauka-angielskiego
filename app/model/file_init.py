@@ -5,16 +5,16 @@ from pathlib import Path
 
 
 class FileInitModel:
-    ALGORITHMS = {'sha1', 'md5', 'sha256', 'sha512', 'asa'}
+    ALGORITHMS = {"sha1", "md5", "sha256", "sha512", "asa"}
 
-    def __init__(self,
-                 path: Path | str,
-                 exist=False,
-                 checksums=False,
-                 json_length=False,
-                 json_key=False,
-                 ):
-
+    def __init__(
+        self,
+        path: Path | str,
+        exist=False,
+        checksums=False,
+        json_length=False,
+        json_key=False,
+    ):
         self.path = Path(path)
         self.do_exist = exist
         self.do_checksums = checksums
@@ -34,10 +34,10 @@ class FileInitModel:
             self.json_length = self._json_length()
 
     def __repr__(self):
-        return f'{self.path.name}'
+        return f"{self.path.name}"
 
     def __str__(self):
-        return f'{self.path.name}'
+        return f"{self.path.name}"
 
     def _exist(self) -> bool:
         """
@@ -56,7 +56,7 @@ class FileInitModel:
         if not self.exist:
             return None
 
-        with open(self.path, 'rb') as f:
+        with open(self.path, "rb") as f:
             _data = f.read()
 
         # generate file hashes described in self.ALGORITHMS if they available
@@ -85,4 +85,3 @@ class FileInitModel:
             return _length
         except ValueError:
             return None
-

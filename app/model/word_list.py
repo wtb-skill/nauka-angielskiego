@@ -5,6 +5,7 @@ from app.model.word import Word
 
 class WordList:
     """Class for managing lists of Word objects. (size, add word, remove word, draw one random word)"""
+
     def __init__(self, words: List[Word]) -> None:
         self.words = words
         self.size = len(self.words)

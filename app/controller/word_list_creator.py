@@ -9,11 +9,7 @@ class WordListCreator:
 
     @staticmethod
     def _create_word(word_dict: Dict) -> Word:
-        word = Word(
-            eng=word_dict['ENG'],
-            pol=word_dict['PL'],
-            stars=word_dict['stars']
-            )
+        word = Word(eng=word_dict["ENG"], pol=word_dict["PL"], stars=word_dict["stars"])
         return word
 
     def create_list_of_words(self) -> List[Word]:
@@ -22,6 +18,3 @@ class WordListCreator:
             _word = self._create_word(word_data)
             words.append(_word)
         return words
-
-
-

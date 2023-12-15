@@ -5,7 +5,6 @@ from typing import Dict, Union
 
 
 class Controller:
-
     # Define a type hint for a single word dictionary
     WordDict = Dict[str, Union[str, Dict[str, Union[str, int]]]]
 
@@ -33,7 +32,7 @@ class Controller:
         """
         if self.model.star_number(_word) < 3:
             user_answer = self.view.quiz_eng_to_pol(_word)
-            if user_answer.lower() == _word['PL']['translation'].lower():
+            if user_answer.lower() == _word["PL"]["translation"].lower():
                 self.view.display_correct()
                 self.model.star_add(_word)
             else:
@@ -41,7 +40,7 @@ class Controller:
                 self.model.star_remove(_word)
         else:
             user_answer = self.view.quiz_pol_to_eng(_word)
-            if user_answer.lower() == _word['ENG'].lower():
+            if user_answer.lower() == _word["ENG"].lower():
                 self.view.display_correct()
                 self.model.star_add(_word)
             else:
@@ -124,9 +123,3 @@ if __name__ == "__main__":
 # TODO 1: Maybe add more leeway for the user to input words: allow single letter spelling mistakes.
 # TODO 3: Maybe add tests.
 # TODO 4: Maybe display stars next to words in the menu.
-
-
-
-
-
-

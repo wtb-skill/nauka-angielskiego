@@ -3,6 +3,7 @@ from datetime import datetime
 
 class ManageDate:
     """Class for managing quiz date and current date."""
+
     def __init__(self, settings_data: dict) -> None:
         self.settings_data = settings_data
         self.current_date = self._get_current_date()

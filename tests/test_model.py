@@ -1,4 +1,5 @@
 import os, sys
+
 sys.path.insert(0, os.getcwd())  # necessary order for tests to be placed in a subfolder
 import pytest
 from app.model.model import Model
@@ -18,13 +19,7 @@ def test_is_hand_size_equal_to_10():
 
 def test_is_words_mastered_being_created():
     model = Model()
-    test_word = {
-        "ENG": "test",
-        "PL": {
-            "translation": "test",
-            "stars": 0
-        }
-    }
+    test_word = {"ENG": "test", "PL": {"translation": "test", "stars": 0}}
     model.update_words_mastered(test_word)
     assert Path("../VocabularyData/words_mastered.json").is_file()
     model.words_mastered.remove(test_word)
@@ -34,26 +29,14 @@ def test_is_words_mastered_being_created():
 def test_if_the_star_count_is_correct():
     model = Model()
     for i in range(0, 7):
-        test_word = {
-            "ENG": "test",
-            "PL": {
-              "translation": "test",
-              "stars": i
-            }
-        }
+        test_word = {"ENG": "test", "PL": {"translation": "test", "stars": i}}
         assert model.star_number(test_word) == i
 
 
 def test_if_stars_are_removed():
     model = Model()
     for i in range(0, 7):
-        test_word = {
-            "ENG": "test",
-            "PL": {
-                "translation": "test",
-                "stars": i
-            }
-        }
+        test_word = {"ENG": "test", "PL": {"translation": "test", "stars": i}}
         model.star_remove(test_word)
         assert model.star_number(test_word) == max(i - 1, 0)
 
@@ -61,26 +44,14 @@ def test_if_stars_are_removed():
 def test_if_stars_are_added():
     model = Model()
     for i in range(0, 7):
-        test_word = {
-            "ENG": "test",
-            "PL": {
-                "translation": "test",
-                "stars": i
-            }
-        }
+        test_word = {"ENG": "test", "PL": {"translation": "test", "stars": i}}
         model.star_add(test_word)
         assert model.star_number(test_word) == i + 1
 
 
 def test_is_word_mastered_when_it_reaches_6_stars():
     controller = Controller()
-    test_word = {
-        "ENG": "test",
-        "PL": {
-            "translation": "test",
-            "stars": 6
-        }
-    }
+    test_word = {"ENG": "test", "PL": {"translation": "test", "stars": 6}}
     controller.word_is_mastered(test_word)
     pass
 

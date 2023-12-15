@@ -2,7 +2,6 @@ from app.model.word import Word
 
 
 class MasteryView:
-
     @staticmethod
     def display_word_is_mastered(word: Word) -> None:
         """Display a message when a word is mastered."""

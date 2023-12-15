@@ -27,7 +27,3 @@ class DateController:  # do ogarnięcia i zmiany
     def display_message_that_quiz_was_done_today() -> None:
         _view = QuizView()
         _view.quiz_completed()
-
-
-
-

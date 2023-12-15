@@ -15,7 +15,7 @@ class WordsDataManager:
         self.word_list_class = word_list_class
 
         name = word_list_class.__name__[5:].upper()
-        self.filename = f'{getattr(VocabularyData, name)}'
+        self.filename = f"{getattr(VocabularyData, name)}"
         self.file_manager = FileManager(self.filename)
 
     def load_words_data(self) -> List[Dict]:

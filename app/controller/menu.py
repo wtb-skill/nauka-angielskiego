@@ -24,4 +24,3 @@ class MenuController:
     def display_words_mastered(self) -> None:
         for word in self._words_mastered.words:
             print(word)
-

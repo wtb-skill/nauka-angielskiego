@@ -1,5 +1,4 @@
 class MenuView:
-
     @staticmethod
     def display_menu() -> None:
         """Display the main menu of the application."""

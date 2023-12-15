@@ -49,6 +49,3 @@ class QuizController:
     @staticmethod
     def _is_english_translation_valid(answer: str, word: Word) -> bool:
         return answer.lower() == word.eng.lower()
-
-
-
