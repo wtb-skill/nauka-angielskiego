@@ -15,7 +15,3 @@ with app.app_context():
 
     db.session.commit()
 
-
-# Create SQLite database
-# conn = sqlite3.connect('english-polish-app.db')
-# cursor = conn.cursor()
