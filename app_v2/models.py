@@ -1,4 +1,5 @@
 # app_v2/models.py
+
 from app_v2 import db
 
 
@@ -8,6 +9,9 @@ class BaseWords(db.Model):
     pol = db.Column(db.String(100), nullable=False)
     stars = db.Column(db.Integer)
 
+    def __repr__(self):
+        return f"<Word {self.eng} - {self.pol}>"
+
 
 class Word(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -15,6 +19,9 @@ class Word(db.Model):
     pol = db.Column(db.String(100), nullable=False)
     stars = db.Column(db.Integer)
     placement = db.Column(db.String(100))
+
+    def __repr__(self):
+        return f"<Word {self.eng} - {self.pol} {'*' * self.stars}>"
     
 
 

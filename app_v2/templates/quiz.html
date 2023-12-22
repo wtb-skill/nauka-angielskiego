@@ -5,5 +5,46 @@
 {% endblock %}
 
 {% block content %}
+<div class="container mt-5">
 
+    <!-- Add a section to display flashed messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endwith %}
+
+    <h2>Translate the Words</h2>
+    <div class="mb-4">
+        {% if word.stars < 3 %}
+            <h3>{{ word.eng }}</h3>
+        {% else %}
+            <h3>{{ word.pol }}</h3>
+        {% endif %}
+        <form action="{{ url_for('quiz', index=index) }}" method="post">
+            <input type="text" name="translation" placeholder="Enter translation...">
+            <!--<input type="text" name="translation" placeholder="Enter translation..." required>-->
+            <input type="hidden" name="word_id" value="{{ word.id }}">
+            <button type="submit" class="btn btn-primary mt-2">Next Word</button>
+        </form>
+
+    </div>
+</div>
+
+<script>
+    // Automatically focus on the input field for each word
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelector('input[name="translation"]').focus();
+    });
+
+    // Automatically close flashed messages after 2 seconds
+    setTimeout(function() {
+        document.querySelectorAll('.alert').forEach(function(alert) {
+            alert.classList.add('visually-hidden');
+        });
+    }, 2000);
+</script>
 {% endblock %}
