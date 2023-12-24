@@ -2,12 +2,33 @@
 
 {% block head %}
     <title>Words In Hand</title>
+    <!-- Include Font Awesome CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+          rel="stylesheet">
 {% endblock %}
 
 {% block content %}
     <div class="list-group">
+        <div class="list-group-item" style="background-color: grey; color: #fff;">
+            <div class="row">
+                <div class="col">English</div>
+                <div class="col">Polish</div>
+                <div class="col">Stars</div>
+            </div>
+        </div>
         {% for word in words %}
-            <div class="list-group-item">{{ word.eng }} - {{ word.pol }} - {{ word.stars }}</div>
+            <div class="list-group-item">
+                <div class="row">
+                    <div class="col">{{ word.eng }}</div>
+                    <div class="col">{{ word.pol }}</div>
+                    <div class="col">
+                    {% for i in range(word.stars) %}
+                        <i class="fas fa-star"></i>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
         {% endfor %}
     </div>
+
 {% endblock %}

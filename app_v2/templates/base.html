@@ -8,12 +8,13 @@
       <title>3000 English Words App</title>
       {% endblock %}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-          rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+          rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
           crossorigin="anonymous">
   </head>
-  <body>
+  <body class="d-flex flex-column vh-100 bg-light">
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
       <div class="container-fluid">
         <a class="navbar-brand" href="{{ url_for('quiz') }}">Quiz</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,14 +32,36 @@
         </div>
       </div>
     </nav>
+    <div class="container mt-5">
+    <!-- A section to display flashed messages -->
+    <div class="alert-placeholder text-center" style="height: 100px;" >
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <!--<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>-->
+            </div>
+        {% endfor %}
+    {% endwith %}
+    </div>
+    </div>
 
-    <div class="container mt-4">
+    <div class="container my-4 bg-white rounded border shadow text-center">
       <!-- Page content within a container with top margin -->
 
       {% block content %}
       {% endblock %}
 
     </div>
+
+    <script>
+    // Automatically close flashed messages after 2 seconds
+    setTimeout(function() {
+        document.querySelectorAll('.alert').forEach(function(alert) {
+            alert.classList.add('visually-hidden');
+        });
+    }, 1000);
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
